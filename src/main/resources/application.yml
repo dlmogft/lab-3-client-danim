@@ -1,0 +1,23 @@
+# Once the application is started, the URL http://localhost:8002/lucky-word
+# Shows the lucky word fetched from the yml from the Git repo
+# that is specified in lab-3-client-server project
+#
+# If the spring.profiles.active is northamerica, the word to display
+# will be fetched from the lab-3-client-northamerica.yml
+# placed in the Git repo pointed from the lab-3-client-server project
+# It's the same as running the application with Dspring.profiles.active=northamerica
+
+spring:
+  application:
+    name: lab-3-client
+  profiles:
+    active: northamerica
+
+  config:
+    import: "optional:configserver:http://localhost:8001"
+
+server:
+  port: 8002
+
+lucky-word: backup
+
