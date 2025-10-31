@@ -7,17 +7,31 @@
 # placed in the Git repo pointed from the lab-3-client-server project
 # It's the same as running the application with Dspring.profiles.active=northamerica
 
+# spring:
+#   application:
+#     name: lab-3-client
+#   profiles:
+#     active: northamerica
+
 spring:
   application:
-    name: lab-3-client
-  profiles:
-    active: northamerica
-
+    name: lucky-word-client
   config:
     import: "optional:configserver:http://localhost:8001"
+  kafka:
+    bootstrap-servers: localhost:9092
+  cloud:
+    bus:
+      enabled: true
 
 server:
   port: 8002
 
-lucky-word: backup
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "busrefresh,refresh,env"
+
+# lucky-word: backup
 
