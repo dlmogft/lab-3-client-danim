@@ -1,7 +1,9 @@
 package client;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +26,18 @@ public class LuckyWordController {
     public String showLuckyWord() {
         return "The lucky word is: " + luckyWord;
     }*/
+
+    /**
+     * This method redirects localhost:8002 to localhost:8002/lucky-word
+     * 
+     * @return
+     */
+    @GetMapping("/")
+    public ResponseEntity<Void> redirectToLuckyWord() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Location", "/lucky-word");
+        return new ResponseEntity<>(headers, HttpStatus.FOUND);
+    }
 
     /**
      * This is the config for lab-5 (spring cloud bus)
