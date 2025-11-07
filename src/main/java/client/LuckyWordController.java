@@ -1,6 +1,7 @@
 package client;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * A default value is set just in case the server project is not started
  */
+@RefreshScope
 @RestController
 @ConfigurationProperties(prefix="word-config")
 public class LuckyWordController {
@@ -29,7 +31,7 @@ public class LuckyWordController {
 
     /**
      * This method redirects localhost:8002 to localhost:8002/lucky-word
-     * 
+     *
      * @return
      */
     @GetMapping("/")
